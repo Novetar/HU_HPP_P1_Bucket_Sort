@@ -2,12 +2,6 @@
 #include <vector>
 
 
-// int int_test() {
-//     int test = 1;
-//     return test;
-// }
-
-
 void print_vector(const std::vector<int>& input) {
     std::cout << "{ ";
     for (auto i: input) {
@@ -30,8 +24,12 @@ std::vector<int> bucket_sort(std::vector<int>& vector_to_sort) {
 
     int vector_size = vector_to_sort.size();
 
-    for (int i = 0; i < 1; i++) {
+    for (int i = 2; i >= 0; i--) {
         // Distribution pass
+        // Clears bucket_array
+        for (std::vector<int>& bucket : bucket_array) {
+            bucket.clear();
+        }
         for (int number : vector_to_sort) {
             std::string number_as_string = std::to_string(number);  // int to string
             int integer = number_as_string[i] - '0';  // Converts char to int by subtracting ascii codes. Example 51 (3) - 48 (0) = 3
@@ -40,7 +38,7 @@ std::vector<int> bucket_sort(std::vector<int>& vector_to_sort) {
 
         // Debugging prints
         std::cout << std::endl;
-        std::cout << "Distribution pass: " << i << std::endl;
+        std::cout << "Distribution pass on index: " << i << std::endl;
         print_vector_vector(bucket_array);
 
         // Gathering pass
@@ -56,7 +54,7 @@ std::vector<int> bucket_sort(std::vector<int>& vector_to_sort) {
 
 
 int main() {
-    std::vector<int> vector_to_sort = {4, 5, 3, 2, 1};
+    std::vector<int> vector_to_sort = {456, 536, 531, 322, 411, 788};
 
     std::cout << "Array Pre Sorting" << std::endl;
     print_vector(vector_to_sort);
